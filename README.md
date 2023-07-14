@@ -10,6 +10,10 @@ This project includes terraform scripts that:
 * Link the private endpoints to the private endpoint service that is in the Atlas side
 * Create 2 EC2 instances in the subnet number 01 of each VPC and each instance will have mongosh client tool to make a connection to the Atlas cluster
 
+# Architecture
+
+![](screenshots/05-architecture.png)
+
 ## Dependencies
 
 ```bash
@@ -19,6 +23,7 @@ on darwin_arm64
 + provider registry.terraform.io/hashicorp/aws v5.8.0
 + provider registry.terraform.io/mongodb/mongodbatlas v1.10.1
 ```
+
 ## Usage
 
 **1\. Ensure your AWS and MongoDB Atlas credentials are configured**
@@ -54,58 +59,64 @@ After the plan looks good, go ahead with applying the plan with the following:
 $ terraform apply
 ```
 
-# Architecture
+
 
 # OUTPUT
 
 ## AWS Side
 
 ### VPCs
+
 ![](screenshots/10-vpc.png)
 
 ### Subnets
+
 ![](screenshots/20-subnets.png)
 
 ### Private Endpoints
+
 ![](screenshots/30-endpoints.png)
 
 #### private-endpoint-01
+
 ![](screenshots/31-endpoint-01.png)
 
 #### private-endpoint-02
+
 ![](screenshots/32-endpoint-02.png)
 
-
 ### EC2 instances
-![](screenshots/40-ec2.png)
 
+![](screenshots/40-ec2.png)
 
 # Atlas Side
 
 ## Atlas Private Endpoint Service
+
 ![](screenshots/50-atlas-pes.png)
 
 ## Atlas Cluster
+
 ![](screenshots/60-atlas-cluster.png)
 
-
 ## Atlas Private Endpoint Connection String Options
-![](screenshots/70-atlas-pe-conn-string-options.png)
 
+![](screenshots/70-atlas-pe-conn-string-options.png)
 
 let's take the connection string for the private endpoint 01 (vpce-07495ef7195e18e73 - verify it from AWS)
 
 ## Atlas Private Endpoint - Getting Connection String
+
 ![](screenshots/80-conn-string.png)
 
 let's connect it
 
 ## Connecting from the EC2 machine that is in the subnet `vpc-01-subnet-01` to the MongoDB Atlas Cluster through the private endpoint `private-endpoint-01 (aws resource id: vpce-07495ef7195e18e73)` by `mongosh`
+
 ![](screenshots/90-mongosh-01.png)
 
 You can get the second private endpoint specific connection string from Atlas and use it for the second EC2 machine while connecting to the cluster:
 
 ## Connecting from the EC2 machine that is in the subnet `vpc-02-subnet-01` to the MongoDB Atlas Cluster through the private endpoint `private-endpoint-02 (aws resource id: vpce-0b3ba6a5b78e3a699)` by `mongosh`
+
 ![](screenshots/100-mongosh-02.png)
-
-
