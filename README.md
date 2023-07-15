@@ -16,6 +16,8 @@ This project includes terraform scripts that:
 
 ## Dependencies
 
+It was tested with the following version of the terraform and versions of the plugin. (older versions may or may not work)
+
 ```bash
 $ terraform --version
 Terraform v1.4.2
@@ -58,8 +60,6 @@ After the plan looks good, go ahead with applying the plan with the following:
 ```bash
 $ terraform apply
 ```
-
-
 
 # OUTPUT
 
